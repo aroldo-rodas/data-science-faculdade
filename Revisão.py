@@ -30,14 +30,17 @@ class Conta:
     #Deposita
     def deposito(self, valor):
         self.saldo += valor
+        self.historico.transacoes.append(f"Deposito de {valor}")
     
     #Saca
     def saca(self, valor):
         self.saldo -= valor
+        self.historico.transacoes.append(f"Saque de {valor}")
 
     #Extrato
     def extratato(self):
         print("Número: {} e saldo: {}".format(self.numero, self.saldo))
+        self.historico.transacoes.append(f"Extrato - saldo de {self.saldo}")
 
     #Transfere
     def transfere(self, destino, valor):
@@ -50,6 +53,9 @@ def main():
     #conta2 = Conta('999-9', 'Aroldo', 999.9, 9999.9)
 
     print(conta1.titular.nome)
+    conta1.historico.imprime()
+    conta1.deposito(50)
+    conta1.extratato()
     conta1.historico.imprime()
 
 main()
